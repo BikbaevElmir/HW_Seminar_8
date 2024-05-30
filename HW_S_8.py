@@ -71,6 +71,7 @@ def standart_write(file_name, res):
         f_w.writerows(res)
 
 file_name = 'phone.csv'
+new_file_name = 'copy_phone.csv'
 def main():
     while True:
         command = input('Введите команду: ')
@@ -91,7 +92,13 @@ def main():
                 print('Файл отсутствует, создайте файл')
                 continue
             remove_row(file_name)
+        elif command == 'c':
+            if not exists(file_name):
+                print('Файл отсутствует, создайте файл')
+                continue
+            if not exists(new_file_name):
+                creat_file(new_file_name)
+                print('Создан файл copy_phone.csv')
+            copy_row(file_name, new_file_name)
 
-
-
-main()
+ main()
