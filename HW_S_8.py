@@ -70,6 +70,21 @@ def standart_write(file_name, res):
         f_w.writeheader()
         f_w.writerows(res)
 
+def copy_row(file_name, new_file_name):
+    search = int(input('Введите номер строки для копирования:'))
+    res = read_file(file_name)
+    if search <= len(res):
+        l1 = list(res[search - 1].values())
+        res1 = read_file(new_file_name)
+        new_obl = {'first_name': l1[0], 'second_name': l1[1], 'phone_number': l1[2]}
+        res1.append(new_obl)
+        standart_write(new_file_name, res1)
+        print('Строка-' + str(search) + ' с данными ' + ", ".join(l1) + ' из файла ' + file_name +
+        ' скопирована в файл ' + new_file_name)
+    else:
+        print('Введен неверный номер строки')
+
+
 file_name = 'phone.csv'
 new_file_name = 'copy_phone.csv'
 def main():
@@ -101,4 +116,4 @@ def main():
                 print('Создан файл copy_phone.csv')
             copy_row(file_name, new_file_name)
 
- main()
+main()
